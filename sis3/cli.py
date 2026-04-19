@@ -26,7 +26,7 @@ from sha256 import sha256_text
 
 
 def print_menu() -> None:
-    print("\n------RSA CLI MENU-------")
+    print("\n------RSA MENU-------")
     print("1. Generate key pair")
     print("2. Encrypt message")
     print("3. Decrypt message")
