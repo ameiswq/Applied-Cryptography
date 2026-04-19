@@ -30,13 +30,10 @@ def print_menu() -> None:
     print("1. Generate key pair")
     print("2. Encrypt message")
     print("3. Decrypt message")
-    print("4. Hash text with SHA-256")
-    print("5. Sign message")
-    print("6. Verify signature")
-    print("7. Show key info")
-    print("8. Validate key files")
-    print("9. Save text to file")
-    print("10. Load text from file")
+    print("4. Sign message")
+    print("5. Verify signature")
+    print("6. Show key info")
+    print("7. Validate key files")
     print("0. Exit")
 
 
@@ -185,15 +182,6 @@ def handle_decrypt():
         print(f"Error: {e}")
 
 
-def handle_hash_text():
-    try:
-        text = input("Enter text to hash: ")
-        print("SHA-256:")
-        print(sha256_text(text))
-    except Exception as e:
-        print(f"Error: {e}")
-
-
 def handle_sign_message():
     try:
         private_key_path = input("Enter private key path: ").strip()
@@ -313,23 +301,6 @@ def handle_validate_keys():
     except Exception as e:
         print(f"Error: {e}")
 
-def handle_save_text():
-    try:
-        text = input("Enter text: ")
-        file_path = input("Enter file path: ").strip()
-        save_text(text, file_path)
-        print(f"Text saved to: {file_path}")
-    except Exception as e:
-        print(f"Error: {e}")
-
-
-def handle_load_text():
-    try:
-        file_path = input("Enter file path: ").strip()
-        print("Loaded text:")
-        print(load_text(file_path))
-    except Exception as e:
-        print(f"Error: {e}")
 
 
 def run_cli():
@@ -344,19 +315,13 @@ def run_cli():
         elif choice == "3":
             handle_decrypt()
         elif choice == "4":
-            handle_hash_text()
-        elif choice == "5":
             handle_sign_message()
-        elif choice == "6":
+        elif choice == "5":
             handle_verify_signature()
-        elif choice == "7":
+        elif choice == "6":
             handle_show_key_info()
-        elif choice == "8":
+        elif choice == "7":
             handle_validate_keys()
-        elif choice == "9":
-            handle_save_text()
-        elif choice == "10":
-            handle_load_text()
         elif choice == "0":
             print("Exiting program.")
             break
