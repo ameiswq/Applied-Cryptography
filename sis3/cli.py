@@ -202,7 +202,12 @@ def handle_sign_message():
         output_format = choose_output_format()
 
         message = input("Enter message to sign: ")
-        signature = sign_message(message.encode("utf-8"), private_key)
+        message_bytes = message.encode("utf-8")
+        digest = sha256_text(message)
+        print("Message hash (SHA-256):")
+        print(digest)
+
+        signature = sign_message(message_bytes, private_key)
 
         encoded_output = bytes_to_output(signature, output_format)
 
