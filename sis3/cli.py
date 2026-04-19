@@ -234,7 +234,12 @@ def handle_verify_signature():
         public_key_path = input("Enter public key path: ").strip()
         public_key = load_public_key(public_key_path)
 
-        message = input("Enter original message: ").encode("utf-8")
+        message_text = input("Enter original message: ")
+        message = message_text.encode("utf-8")
+
+        digest = sha256_text(message_text)
+        print("Message hash (SHA-256):")
+        print(digest)
 
         source_choice = input("Load signature from file? (y/n): ").strip().lower()
 
