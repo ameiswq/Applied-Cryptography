@@ -1,7 +1,5 @@
-import secrets
-
 from sha256 import sha256_bytes
-
+from rng import randbytes, randbelow
 
 SHA256_DIGESTINFO_PREFIX = bytes.fromhex(
     "3031300d060960864801650304020105000420"
@@ -23,7 +21,7 @@ def pkcs1_v15_pad(message: bytes, block_size: int):
 
     ps = bytearray()
     while len(ps) < padding_length:
-        b = secrets.randbelow(256)
+        b = randbelow(256)
         if b != 0:
             ps.append(b)
 
@@ -132,7 +130,7 @@ def oaep_pad(message: bytes, block_size: int, label: bytes = b""):
     ps = b"\x00" * (block_size - len(message) - 2 * h_len - 2)
     db = l_hash + ps + b"\x01" + message
 
-    seed = secrets.token_bytes(h_len)
+    seed = randbytes(h_len)
     db_mask = mgf1(seed, block_size - h_len - 1)
     masked_db = bytes(x ^ y for x, y in zip(db, db_mask))
 

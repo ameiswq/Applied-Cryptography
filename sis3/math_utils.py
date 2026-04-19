@@ -1,4 +1,4 @@
-def gcd(a: int, b: int) -> int:
+def gcd(a: int, b: int):
     while b != 0:
         a, b = b, a % b
     return abs(a)

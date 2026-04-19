@@ -1,6 +1,5 @@
-import secrets
-
 from math_utils import mod_exp
+from rng import randbits, randbelow
 
 
 def default_miller_rabin_rounds(bits: int):
@@ -15,7 +14,7 @@ def random_odd_int(bits: int):
     if bits < 2:
         raise ValueError("Bit length must be at least 2")
 
-    num = secrets.randbits(bits)
+    num = randbits(bits)
     num |= (1 << (bits - 1)) 
     num |= 1              
     return num
@@ -48,7 +47,7 @@ def is_probable_prime(n: int, k: int | None = None):
         r += 1
 
     for _ in range(k):
-        a = secrets.randbelow(n - 3) + 2 
+        a = randbelow(n - 3) + 2 
         x = mod_exp(a, d, n)
 
         if x == 1 or x == n - 1:
